@@ -4,6 +4,7 @@ Fixed::Fixed(void)
 {
 	std::cout << "Default constructor called" << std::endl;
 	_rawBits = 0;
+	(void)_dotDelta;
 }
 
 Fixed::~Fixed(void)
