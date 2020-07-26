@@ -58,20 +58,78 @@ float		Fixed::toFloat(void) const
 	return ((float)_rawBits / (1 << _dotDelta));
 }
 
-void		write_bit(std::ostream &os, int const value, int const pos)
-{
-	os << "[" << ((value & (1 << pos)) >> pos) << "]";
-}
-
 std::ostream	&operator<<(std::ostream &os, Fixed const &value)
 {
-	for (int bit = 31; bit >= 0; bit--)
-	{
-		if (bit == value.getDotDelta() - 1)
-			os << ".";
-		else if (!((bit + 1) % 8) && bit != 31)
-			os << " ";
-		write_bit(os, value.getRawBits(), bit);
-	}
+	os << value.toFloat();
 	return (os);
+}
+
+Fixed		Fixed::operator*(Fixed const &other)
+{
+	return (Fixed(this->toFloat() * other.toFloat()));
+}
+
+Fixed	&Fixed::operator++()
+{
+	_rawBits++;
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	temp = *this;
+	++*this;
+	return (temp);
+}
+
+int		Fixed::operator>(Fixed const &other) const
+{
+	return (_rawBits > other.getRawBits());
+}
+
+int		Fixed::operator<(Fixed const &other) const
+{
+	return (_rawBits < other.getRawBits());
+}
+
+int		Fixed::operator>=(Fixed const &other) const
+{
+	return (_rawBits >= other.getRawBits());
+}
+
+int		Fixed::operator<=(Fixed const &other) const
+{
+	return (_rawBits <= other.getRawBits());
+}
+
+int		Fixed::operator==(Fixed const &other) const
+{
+	return (_rawBits == other.getRawBits());
+}
+
+int		Fixed::operator!=(Fixed const &other) const
+{
+	return (_rawBits != other.getRawBits());
+}
+
+Fixed const			&max(Fixed const &a, Fixed const &b)
+{
+	return (a > b ? a : b);
+}
+
+Fixed const			&max(Fixed const &tab)
+{
+	return (tab.getRawBits() > (&tab)[1].getRawBits() ?
+			tab : (&tab)[1]);
+}
+
+Fixed const			&min(Fixed const &a, Fixed const &b)
+{
+	return (a < b ? a : b);
+}
+
+Fixed const			&min(Fixed const &tab)
+{	
+	return (tab.getRawBits() < (&tab)[1].getRawBits() ?
+			tab : (&tab)[1]);
 }

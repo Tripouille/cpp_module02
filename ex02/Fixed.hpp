@@ -11,7 +11,16 @@ class Fixed
 		~Fixed(void);
 		Fixed(Fixed const &other);
 		Fixed	&operator=(Fixed const &other);
-
+		Fixed	operator*(Fixed const &other);
+		Fixed	&operator++();
+		Fixed	operator++(int);
+		int		operator>(Fixed const &other) const;
+		int		operator<(Fixed const &other) const;
+		int		operator>=(Fixed const &other) const;
+		int		operator<=(Fixed const &other) const;
+		int		operator==(Fixed const &other) const;
+		int		operator!=(Fixed const &other) const;
+ 
 		int			getRawBits(void) const;
 		int			getDotDelta(void) const;
 		void		setRawBits(int const raw);
@@ -24,5 +33,9 @@ class Fixed
 };
 
 std::ostream	&operator<<(std::ostream &os, Fixed const &value);
+Fixed const		&max(Fixed const &a, Fixed const &b);
+Fixed const		&max(Fixed const &tab);
+Fixed const		&min(Fixed const &a, Fixed const &b);
+Fixed const		&min(Fixed const &tab);
 
 #endif
