@@ -14,6 +14,17 @@ int main(void)
 	std::cout << b << std::endl;
 	std::cout << "min " << Fixed::min(a, b) << std::endl;
 	std::cout << "max " << Fixed::max(a, b) << std::endl;
+	
+	Fixed	u(10), i(10);
+	std::cout << u.toInt() << " / " << i.toInt() << " = " << u / i <<std::endl;
+	std::cout << u.toInt() << " - " << i.toInt() << " = " << u - i <<std::endl;
+	std::cout << u.toInt() << " + " << i.toInt() << " = " << u + i <<std::endl;
+	std::cout << u.toInt() << " == " << i.toInt() << " = " << (u == i) << std::endl;
+	std::cout << u.toInt() << " != " << i.toInt() << " = " << (u != i) << std::endl;
+	std::cout << u.toInt() << " > " << i.toInt() << " = " << (u > i) << std::endl;
+	std::cout << u.toInt() << " >= " << i.toInt() << " = " << (u >= i) << std::endl;
+	std::cout << u.toInt() << " < " << i.toInt() << " = " << (u < i) << std::endl;
+	std::cout << u.toInt() << " <= " << i.toInt() << " = " << (u <= i) << std::endl;
 
 	return 0;
 }
