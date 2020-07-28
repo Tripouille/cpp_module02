@@ -15,7 +15,7 @@ class Fixed
 
 	private:
 		int 				_rawBits;
-		int	const			_dotDelta = 8;
+		static int const	_dotDelta = 8;
 };
 
 #endif
