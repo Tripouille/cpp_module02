@@ -58,20 +58,8 @@ float		Fixed::toFloat(void) const
 	return ((float)_rawBits / (1 << _dotDelta));
 }
 
-void		write_bit(std::ostream &os, int const value, int const pos)
-{
-	os << "[" << ((value & (1 << pos)) >> pos) << "]";
-}
-
 std::ostream	&operator<<(std::ostream &os, Fixed const &value)
 {
-	for (int bit = 31; bit >= 0; bit--)
-	{
-		if (bit == value.getDotDelta() - 1)
-			os << ".";
-		else if (!((bit + 1) % 8) && bit != 31)
-			os << " ";
-		write_bit(os, value.getRawBits(), bit);
-	}
+	os << value.toFloat();
 	return (os);
 }
