@@ -64,23 +64,22 @@ std::ostream	&operator<<(std::ostream &os, Fixed const &value)
 	return (os);
 }
 
-Fixed		Fixed::operator*(Fixed const &other)
+Fixed		Fixed::operator*(Fixed const &other) const
 {
 	return (Fixed(this->toFloat() * other.toFloat()));
 }
 
-
-Fixed	Fixed::operator/(Fixed const &other)
+Fixed	Fixed::operator/(Fixed const &other) const
 {
 	return (Fixed(this->toFloat() / other.toFloat()));
 }
 
-Fixed	Fixed::operator+(Fixed const &other)
+Fixed	Fixed::operator+(Fixed const &other) const
 {
 	return (Fixed(this->toFloat() + other.toFloat()));
 }
 
-Fixed	Fixed::operator-(Fixed const &other)
+Fixed	Fixed::operator-(Fixed const &other) const
 {
 	return (Fixed(this->toFloat() - other.toFloat()));
 }
@@ -100,52 +99,50 @@ Fixed	Fixed::operator++(int)
 
 int		Fixed::operator>(Fixed const &other) const
 {
-	return (_rawBits > other.getRawBits());
+	return (_rawBits > other._rawBits);
 }
 
 int		Fixed::operator<(Fixed const &other) const
 {
-	return (_rawBits < other.getRawBits());
+	return (_rawBits < other._rawBits);
 }
 
 int		Fixed::operator>=(Fixed const &other) const
 {
-	return (_rawBits >= other.getRawBits());
+	return (_rawBits >= other._rawBits);
 }
 
 int		Fixed::operator<=(Fixed const &other) const
 {
-	return (_rawBits <= other.getRawBits());
+	return (_rawBits <= other._rawBits);
 }
 
 int		Fixed::operator==(Fixed const &other) const
 {
-	return (_rawBits == other.getRawBits());
+	return (_rawBits == other._rawBits);
 }
 
 int		Fixed::operator!=(Fixed const &other) const
 {
-	return (_rawBits != other.getRawBits());
+	return (_rawBits != other._rawBits);
 }
 
-Fixed const			&max(Fixed const &a, Fixed const &b)
+Fixed 			&Fixed::max(Fixed &a, Fixed &b)
 {
 	return (a > b ? a : b);
 }
 
-Fixed const			&max(Fixed const &tab)
+Fixed const		&Fixed::max(Fixed const &a, Fixed const &b)
 {
-	return (tab.getRawBits() > (&tab)[1].getRawBits() ?
-			tab : (&tab)[1]);
+	return (a > b ? a : b);
 }
 
-Fixed const			&min(Fixed const &a, Fixed const &b)
+Fixed 			&Fixed::min(Fixed &a, Fixed &b)
 {
 	return (a < b ? a : b);
 }
 
-Fixed const			&min(Fixed const &tab)
-{	
-	return (tab.getRawBits() < (&tab)[1].getRawBits() ?
-			tab : (&tab)[1]);
+Fixed const		&Fixed::min(Fixed const &a, Fixed const &b)
+{
+	return (a < b ? a : b);
 }
