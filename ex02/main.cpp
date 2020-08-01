@@ -25,6 +25,8 @@ int main(void)
 	std::cout << u.toInt() << " >= " << i.toInt() << " = " << (u >= i) << std::endl;
 	std::cout << u.toInt() << " < " << i.toInt() << " = " << (u < i) << std::endl;
 	std::cout << u.toInt() << " <= " << i.toInt() << " = " << (u <= i) << std::endl;
+	std::cout << u << " u-- " << u-- << std::endl;
+	std::cout << u << " --u " << --u << std::endl;
 
 	return 0;
 }

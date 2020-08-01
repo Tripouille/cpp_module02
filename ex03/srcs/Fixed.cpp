@@ -97,6 +97,19 @@ Fixed	Fixed::operator++(int)
 	return (temp);
 }
 
+Fixed		&Fixed::operator--()
+{
+	_rawBits--;
+	return (*this);
+}
+
+Fixed		Fixed::operator--(int)
+{
+	Fixed	temp = *this;
+	--*this;
+	return (temp);
+}
+
 int		Fixed::operator>(Fixed const &other) const
 {
 	return (_rawBits > other._rawBits);
