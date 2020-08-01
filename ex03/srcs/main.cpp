@@ -19,6 +19,8 @@ int		main (int ac, char **av)
 
 	if (ac != 2)
 		return (-1);
+	while (av[1][0] == ' ')
+		av[1]++;
 	ss << av[1];
 	parse_parentheses(ss, 0);
 	calcul_expression(ss, 0);

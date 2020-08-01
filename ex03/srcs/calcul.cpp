@@ -21,13 +21,16 @@ void		calcul(std::stringstream &ss, unsigned long s, unsigned long e)
 
 unsigned long	calcul_start(std::string str, unsigned long s, unsigned long op_pos)
 {
-	unsigned long start = op_pos - 1;
+	unsigned long	start = op_pos - 1;
 
 	while (start > s && !isdigit(str[start]))
 		start--;
-	while (start > s && str[start] != ' ')
+	while (start > s && std::string(" /*-+").find(str[start]) == std::string::npos)
 		start--;
-	return (str[start] == ' ' ? start + 1 : start);
+	if (str[start] == ' ')
+		while (start > s && str[start - 1] == ' ')
+			start--;
+	return (start == s ? start : start + 1);
 }
 
 unsigned long	calcul_end(std::string str, unsigned long s, unsigned long op_pos)
@@ -39,7 +42,7 @@ unsigned long	calcul_end(std::string str, unsigned long s, unsigned long op_pos)
 		end = str.size();
 	while (cend < end && !isdigit(str[cend]))
 		cend++;
-	while (cend < end && str[cend] && str[cend] != ' ')
+	while (cend < end && str[cend] && std::string(" /*-+").find(str[cend]) == std::string::npos)
 		cend++;
 	return (cend - 1);
 }

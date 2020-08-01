@@ -9,7 +9,7 @@ int			get_op_pos(std::string str, unsigned long s, char op)
 		end = str.size();
 	for (i = s; i < end; i++)
 		if (str[i] == op)
-			for (int r = i - 1; i > s && std::string("/*-+").find(str[r], 0) == std::string::npos; r--)
+			for (int r = i - 1; r >= (int)s && std::string("/*-+").find(str[r], 0) == std::string::npos; r--)
 				if (isdigit(str[r]))
 					return (i);
 	return (-1);
